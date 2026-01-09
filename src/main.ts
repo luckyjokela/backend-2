@@ -11,9 +11,9 @@ async function bootstrap() {
     await AppPostgreSQLDataSource.initialize();
 
     const configService = app.get(ConfigService);
-    const myOrigin = `http://localhost:3000`;
+    const siteOrigin = configService.get<string>('myOrigin');
     app.enableCors({
-      origin: myOrigin,
+      origin: siteOrigin,
       credentials: true,
     });
 
