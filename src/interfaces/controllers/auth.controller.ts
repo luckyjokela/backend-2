@@ -13,7 +13,6 @@ import { AuthService } from '../../auth/services/auth.service';
 import { CreateUserUseCase } from '../../application/useCases/createUser/CreateUser.usecase';
 import { RegisterUserDto } from '../../application/dtos/Register.dto';
 import { ConfirmEmailDto } from '../../application/dtos/ConfirmEmail.dto';
-import { RefreshTokenDto } from '../../application/dtos/RefreshToken.dto';
 import { IReq } from '../IReq/IRequest';
 import { IRes } from '../IRes/IResponse';
 import { Throttle } from '@nestjs/throttler';
@@ -82,14 +81,17 @@ export class AuthController {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'lax',
-      maxAge: 3600000,
+      maxAge: 15 * 60 * 1000,
     });
 
-    return {
-      success: true,
-      access_token: tokens.access_token,
-      refresh_token: tokens.refresh_token,
-    };
+    res.cookie('refresh_token', tokens.refresh_token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+      maxAge: 7 * 24 * 60 * 60 * 1000,
+    });
+
+    return { success: true, message: 'Logged in' };
   }
 
   @Post('confirm-email')
@@ -100,11 +102,39 @@ export class AuthController {
 
   @Post('refresh')
   @HttpCode(HttpStatus.OK)
-  async refresh(@Body() dto: RefreshTokenDto, @Request() req: IReq) {
-    const { refreshToken } = dto;
+  async refresh(
+    @Request() req: IReq,
+    @Response({ passthrough: true }) res: IRes,
+  ) {
+    const refreshToken = req.cookies?.refresh_token;
+    if (!refreshToken) {
+      throw new HttpException('No refresh token', HttpStatus.UNAUTHORIZED);
+    }
+
     const ip = req.ip || '127.0.0.1';
     const userAgent = req.get('User-Agent') || 'test-agent';
 
-    return this.authService.refreshToken(refreshToken, ip, userAgent);
+    const { access_token } = await this.authService.refreshToken(
+      refreshToken,
+      ip,
+      userAgent,
+    );
+
+    res.cookie('access_token', access_token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+      maxAge: 15 * 60 * 1000,
+    });
+
+    return { success: true };
+  }
+
+  @Post('logout')
+  @HttpCode(HttpStatus.OK)
+  logout(@Response({ passthrough: true }) res: IRes) {
+    res.clearCookie('access_token');
+    res.clearCookie('refresh_token');
+    return { success: true, message: 'Logged out' };
   }
 }
