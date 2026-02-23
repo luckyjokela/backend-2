@@ -1,6 +1,7 @@
 export enum UserRoles {
-  USER = 'user',
-  OWNER = 'owner',
-  MODERATOR = 'moderator',
-  ADMIN = 'admin',
+  USER = 'User',
+  OWNER = 'Owner',
+  MAKER = 'CakeMaker',
+  MODERATOR = 'Moderator',
+  ADMIN = 'Admin',
 }

@@ -2,7 +2,7 @@
 
 import { Test, TestingModule } from '@nestjs/testing';
 import { AdminController } from './admin.controller';
-import { GetAllUserUseCase } from '../../application/useCases/getAllUser/GetAllUser.usecase';
+import { GetAllUserUseCase } from '../../application/useCases/User/GetAllUser.usecase';
 import { AdminGuard } from '../../auth/guards/AdminGuards';
 import { JwtAuthGuard } from '../../auth/guards/JwtAuthGuard';
 import { HttpException, HttpStatus } from '@nestjs/common';

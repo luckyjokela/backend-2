@@ -1,9 +1,9 @@
-import { Product } from '../entities/Product';
+import { Order } from '../entities/Order';
 
 export interface IProductRepository {
   save(product: Product): Promise<void>;
   findById(id: string): Promise<Product | null>;
-  findByMakerName(makerName: string): Promise<Product[]>;
+  findByVendorName(vendorName: string): Promise<Product[]>;
   findByPrice(priceRange: [number, number]): Promise<Product[]>;
   findByUsername(username: string): Promise<Product[]>;
   findByName(name: string): Promise<Product[]>;
@@ -14,4 +14,4 @@ export interface IProductRepository {
   delete(id: string): Promise<void>;
 }
 
-export const PRODUCT_REPOSITORY_TOKEN = Symbol('I_PRODUCT_REPOSITORY');
+export const ORDER_REPOSITORY_TOKEN = Symbol('I_ORDER_REPOSITORY');

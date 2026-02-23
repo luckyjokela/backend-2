@@ -12,8 +12,8 @@ export class ValueObject<T> {
   }
 }
 
-export class VendorName extends ValueObject<NameType> {
-  static create(value: NameType): Result<VendorName> {
+export class MakerName extends ValueObject<NameType> {
+  static create(value: NameType): Result<MakerName> {
     if (!value || value.trim().length < 2 || value.length > 50) {
       return {
         success: false,
@@ -26,7 +26,7 @@ export class VendorName extends ValueObject<NameType> {
         error: 'Vendor name contains unsafe characters',
       };
     }
-    return { success: true, data: new VendorName(value) };
+    return { success: true, data: new MakerName(value) };
   }
 }
 

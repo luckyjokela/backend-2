@@ -6,7 +6,7 @@ import {
   HttpStatus,
 } from '@nestjs/common';
 import { AdminGuard } from '../../auth/guards/AdminGuards';
-import { GetAllUserUseCase } from '../../application/useCases/getAllUser/GetAllUser.usecase';
+import { GetAllUserUseCase } from '../../application/useCases/User/GetAllUser.usecase';
 
 @Controller('admin')
 export class AdminController {

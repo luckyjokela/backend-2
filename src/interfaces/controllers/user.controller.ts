@@ -4,10 +4,10 @@ import { IReq } from '../IReq/IRequest';
 import { CreateUserDto } from '../../application/dtos/CreateUser.dto';
 import { UpdateUserDto } from '../../application/dtos/UpdateUser.dto';
 import { ChangePasswordDto } from '../../application/dtos/ChangePassword.dto';
-import { CreateUserUseCase } from '../../application/useCases/createUser/CreateUser.usecase';
-import { UpdateUserUseCase } from '../../application/useCases/updateUser/UpdateUser.usecase';
-import { GetUserUseCase } from '../../application/useCases/getUser/GetUser.usecase';
-import { DeleteUserUseCase } from '../../application/useCases/deleteUser/DeleteUser.usecase';
+import { CreateUserUseCase } from '../../application/useCases/User/CreateUser.usecase';
+import { UpdateUserUseCase } from '../../application/useCases/User/UpdateUser.usecase';
+import { GetUserUseCase } from '../../application/useCases/User/GetUser.usecase';
+import { DeleteUserUseCase } from '../../application/useCases/User/DeleteUser.usecase';
 import { ChangeUserPasswordUseCase } from '../../application/useCases/changePassword/ChangePasswordUser.usecase';
 import {
   Controller,

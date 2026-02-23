@@ -5,7 +5,7 @@ import {
   ProductName,
   ProductDescription,
   ProductImage,
-  VendorName,
+  MakerName,
 } from './variableObjects/ProductBio';
 
 export class Product {
@@ -15,7 +15,7 @@ export class Product {
     private readonly clientName: Name,
     private readonly clientMiddleName: MiddleName,
     private readonly clientSurname: Surname,
-    private readonly vendorName: VendorName,
+    private readonly makerName: MakerName,
     private readonly name: ProductName,
     private readonly description: ProductDescription,
     private readonly price: ProductPrice,
@@ -30,12 +30,12 @@ export class Product {
     return this.id.getValue();
   }
 
-  getVendorName(): VendorName {
-    return this.vendorName;
+  getMakerName(): MakerName {
+    return this.makerName;
   }
 
-  getVendorNameValue(): string {
-    return this.vendorName.getValue();
+  getMakerNameValue(): string {
+    return this.makerName.getValue();
   }
 
   getClientUsername(): Username {

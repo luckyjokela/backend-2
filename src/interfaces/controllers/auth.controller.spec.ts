@@ -2,7 +2,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { AuthController } from './auth.controller';
 import { AuthService } from '../../auth/services/auth.service';
-import { CreateUserUseCase } from '../../application/useCases/createUser/CreateUser.usecase';
+import { CreateUserUseCase } from '../../application/useCases/User/CreateUser.usecase';
 import { LoginUserDto } from '../../application/dtos/Login.dto';
 import { RefreshTokenDto } from '../../application/dtos/RefreshToken.dto';
 import { IReq } from '../IReq/IRequest';

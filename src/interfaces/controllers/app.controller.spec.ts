@@ -1,8 +1,8 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { AppController } from '../controllers/app.controller';
 import { AppService } from '../services/app.service';
-import { CreateUserUseCase } from '../../application/useCases/createUser/CreateUser.usecase';
-import { UpdateUserUseCase } from '../../application/useCases/updateUser/UpdateUser.usecase';
+import { CreateUserUseCase } from '../../application/useCases/User/CreateUser.usecase';
+import { UpdateUserUseCase } from '../../application/useCases/User/UpdateUser.usecase';
 import { USER_REPOSITORY_TOKEN } from '../../core/repositories/IUserRepository.interface';
 import { UserRepository } from '../../infrastructure/persistence/typeorm/repositories/UserRepository';
 

@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { GetAllUserUseCase } from '../../application/useCases/getAllUser/GetAllUser.usecase';
+import { GetAllUserUseCase } from '../../application/useCases/User/GetAllUser.usecase';
 import { USER_REPOSITORY_TOKEN } from '../../core/repositories/IUserRepository.interface';
 import { UserRepository } from '../../infrastructure/persistence/typeorm/repositories/UserRepository';
 import { AdminController } from '../controllers/admin.controller';
