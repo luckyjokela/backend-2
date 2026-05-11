@@ -1,4 +1,4 @@
-|   .env
+C:.
 |   .env.example
 |   .gitignore
 |   .prettierrc
@@ -13,17 +13,23 @@
 |   structure.txt
 |   tsconfig.build.json
 |   tsconfig.json
-|                  
+|   
++---.vscode
+|       settings.json
+|                
 +---src
 |   |   app.exceptions.filter.ts
 |   |   main.ts
 |   |   
 |   +---application
 |   |   +---dtos
+|   |   |       AcceptOrder.dto.ts
 |   |   |       ChangePassword.dto.ts
 |   |   |       ConfirmEmail.dto.ts
+|   |   |       CreateOrder.dto.ts
 |   |   |       CreateUser.dto.ts
 |   |   |       Login.dto.ts
+|   |   |       RefreshToken.dto.ts
 |   |   |       Register.dto.ts
 |   |   |       UpdateUser.dto.ts
 |   |   |       
@@ -31,22 +37,21 @@
 |   |       +---changePassword
 |   |       |       ChangePasswordUser.usecase.ts
 |   |       |       
-|   |       +---createUser
-|   |       |       CreateUser.usecase.ts
+|   |       +---Order
+|   |       |       AcceptOrder.usecase.ts
+|   |       |       CheckExpiredOrders.usecase.ts
+|   |       |       CreateOrder.usecase.ts
+|   |       |       DistributeOrder.usecase.ts
+|   |       |       GetAvailableOrder.usecase.ts
 |   |       |       
-|   |       +---deleteUser
-|   |       |       DeleteUser.usecase.ts
-|   |       |       
-|   |       +---getAllUser
-|   |       |       GetAllUser.usecase.ts
-|   |       |       
-|   |       +---getUser
-|   |       |       GetUser.usecase.ts
-|   |       |       
-|   |       +---refreshToken
+|   |       +---Token
 |   |       |       RefreshToken.usecase.ts
 |   |       |       
-|   |       \---updateUser
+|   |       \---User
+|   |               CreateUser.usecase.ts
+|   |               DeleteUser.usecase.ts
+|   |               GetAllUser.usecase.ts
+|   |               GetUser.usecase.ts
 |   |               UpdateUser.usecase.ts
 |   |               
 |   +---auth
@@ -68,12 +73,15 @@
 |   |           
 |   +---core
 |   |   +---entities
+|   |   |   |   Order.ts
 |   |   |   |   Product.ts
 |   |   |   |   User.ts
 |   |   |   |   
 |   |   |   \---variableObjects
+|   |   |           CakeType.enum.ts
 |   |   |           Email.ts
 |   |   |           IdGenerator.ts
+|   |   |           OrderStatus.enum.ts
 |   |   |           password.spec.ts
 |   |   |           Password.ts
 |   |   |           PasswordValidator.ts
@@ -84,6 +92,7 @@
 |   |   |           Uuid.ts
 |   |   |           
 |   |   +---repositories
+|   |   |       IOrderRepository.interface.ts
 |   |   |       IProductRepository.interface.ts
 |   |   |       IUserRepository.interface.ts
 |   |   |       
@@ -112,9 +121,13 @@
 |   |   |       |   data-source.ts
 |   |   |       |   
 |   |   |       +---entities
+|   |   |       |       MakerSkillEntity.ts
+|   |   |       |       NotificationEntity.ts
+|   |   |       |       OrderEntity.ts
 |   |   |       |       UserEntity.ts
 |   |   |       |       
 |   |   |       \---repositories
+|   |   |               OrderRepository.ts
 |   |   |               UserRepository.ts
 |   |   |               
 |   |   \---services
@@ -128,6 +141,8 @@
 |   |   |       app.controller.ts
 |   |   |       auth.controller.spec.ts
 |   |   |       auth.controller.ts
+|   |   |       notification.controller.ts
+|   |   |       order.controller.ts
 |   |   |       user.controller.spec.ts
 |   |   |       user.controller.ts
 |   |   |       
@@ -140,10 +155,12 @@
 |   |   +---modules
 |   |   |       admin.module.ts
 |   |   |       app.module.ts
+|   |   |       order.module.ts
 |   |   |       user.module.ts
 |   |   |       
 |   |   \---services
 |   |           app.service.ts
+|   |           notification.service.ts
 |   |           
 |   \---__mocks__
 |           zxcvbn.ts

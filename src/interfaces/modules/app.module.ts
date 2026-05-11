@@ -5,6 +5,7 @@ import { AppService } from '../services/app.service';
 import { AdminModule } from './admin.module';
 import { AuthModule } from '../../auth/modules/auth.module';
 import { UserModule } from './user.module';
+import { OrderModule } from './order.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -14,6 +15,7 @@ import { UserModule } from './user.module';
     AdminModule,
     AuthModule,
     UserModule,
+    OrderModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -1,3 +1,4 @@
+// src/core/repositories/IProductRepository.interface.ts
 import { Product } from '../entities/Product';
 
 export interface IProductRepository {
@@ -14,4 +15,5 @@ export interface IProductRepository {
   delete(id: string): Promise<void>;
 }
 
-export const PRODUCT_REPOSITORY_TOKEN = Symbol('I_PRODUCT_REPOSITORY');
+// ✅ Используем string вместо Symbol (как в USER_REPOSITORY_TOKEN)
+export const PRODUCT_REPOSITORY_TOKEN = 'PRODUCT_REPOSITORY_TOKEN';

@@ -23,13 +23,10 @@ export class Id {
     return { success: true, data: new Id(value) };
   }
 
-<<<<<<< HEAD
-=======
   static unsafeFromString(value: string): Id {
     return new Id(value);
   }
 
->>>>>>> 33b11ba (update)
   getValue(): string {
     return this._value;
   }

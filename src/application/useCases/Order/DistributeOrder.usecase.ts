@@ -1,30 +1,3 @@
-<<<<<<< HEAD
-// псевдокод DistributeOrderUseCase:
-// async execute(orderId: string) {
-//   const order = await this.orderRepo.findById(orderId);
-
-// 1. Найти подходящих мастеров
-//   const makers = await this.userRepo.find({ role: 'MAKER' });
-
-//   const suitableMakers = makers.filter(maker => {
-// Проверка навыка
-//     const hasSkill = maker.skills.includes(order.cakeType);
-// Проверка нагрузки (меньше 3 активных)
-//     const isNotBusy = maker.activeOrdersCount < 3;
-// Проверка статуса
-//     const isOnline = maker.status === 'ONLINE';
-
-//     return hasSkill && isNotBusy && isOnline;
-//   });
-
-// 2. Отправить уведомления
-//   for (const maker of suitableMakers) {
-//     await this.notificationService.send(maker.id, {
-//       message: `Новый заказ: ${order.cakeType} на ${order.date}`
-//     });
-//   }
-// }
-=======
 import { Injectable } from '@nestjs/common';
 import {
   IOrderRepository,
@@ -57,7 +30,7 @@ export class DistributeOrderUseCase {
       }
 
       // 1. Найти всех изготовителей
-      const allMakers = await this.userRepo.findAllMakers();
+      const allMakers = await this.userRepo.findAvailableForMaker();
       // 2. Фильтр: онлайн + нужный навык + не перегружен (< 3 активных заказов) dfdf
       const suitableMakers = allMakers.filter((maker) => {
         const hasSkill = maker.hasSkill(order.getCakeType());

@@ -1,14 +1,3 @@
-<<<<<<< HEAD
-// id,
-// customerId,
-// makerId (кто взял),
-// status (new, in_progress, done)
-// cakeType,
-// layers,
-// filling,
-// date
-// createdAt
-=======
 import {
   Entity,
   Column,
@@ -63,4 +52,3 @@ export class OrderEntity {
   @JoinColumn({ name: 'makerId' })
   maker?: UserEntity;
 }
->>>>>>> 33b11ba (update)
