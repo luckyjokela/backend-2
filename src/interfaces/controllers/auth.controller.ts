@@ -8,11 +8,11 @@ import {
   Request,
   Response,
 } from '@nestjs/common';
-import { LoginUserDto } from '../../application/dtos/Login.dto';
+import { LoginUserDto } from '../../application/dtos/auth/Login.dto';
 import { AuthService } from '../../auth/services/auth.service';
 import { CreateUserUseCase } from '../../application/useCases/User/CreateUser.usecase';
-import { RegisterUserDto } from '../../application/dtos/Register.dto';
-import { ConfirmEmailDto } from '../../application/dtos/ConfirmEmail.dto';
+import { RegisterUserDto } from '../../application/dtos/auth/Register.dto';
+import { ConfirmEmailDto } from '../../application/dtos/auth/ConfirmEmail.dto';
 import { IReq } from '../IReq/IRequest';
 import { IRes } from '../IRes/IResponse';
 import { Throttle } from '@nestjs/throttler';

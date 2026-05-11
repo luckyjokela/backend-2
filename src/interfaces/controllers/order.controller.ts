@@ -1,8 +1,19 @@
-import { Controller, Post, Body, Get, Param, UseGuards, Request, HttpCode, HttpStatus, HttpException } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Body,
+  Get,
+  Param,
+  UseGuards,
+  Request,
+  HttpCode,
+  HttpStatus,
+  HttpException,
+} from '@nestjs/common';
 import { CreateOrderUseCase } from '../../application/useCases/Order/CreateOrder.usecase';
 import { AcceptOrderUseCase } from '../../application/useCases/Order/AcceptOrder.usecase';
 import { DistributeOrderUseCase } from '../../application/useCases/Order/DistributeOrder.usecase';
-import { CreateOrderDto } from '../../application/dtos/CreateOrder.dto';
+import { CreateOrderDto } from '../../application/dtos/order/CreateOrder.dto';
 import { JwtAuthGuard } from '../../auth/guards/JwtAuthGuard';
 import { IReq } from '../IReq/IRequest';
 
@@ -27,34 +38,36 @@ export class OrderController {
       ...dto,
       customerId,
       requestedDate: new Date(dto.requestedDate),
+      description: dto.description,
     });
 
     if (!result.success) {
       throw new HttpException(result.error, HttpStatus.BAD_REQUEST);
     }
 
-    // Запустить распределение асинхронно
-    this.distributeOrder.execute(result.data!.getId().getValue()).catch(console.error);
+    this.distributeOrder
+      .execute(result.data.getId().getValue())
+      .catch(console.error);
 
     return {
       success: true,
       data: {
-        id: result.data!.getId().getValue(),
-        status: result.data!.getStatus(),
+        id: result.data.getId().getValue(),
+        status: result.data.getStatus(),
       },
     };
   }
 
   @Get('/available')
   @UseGuards(JwtAuthGuard)
-  async getAvailable(@Request() req: IReq) {
+  getAvailable(@Request() req: IReq) {
     // Только для изготовителей
     if (req.user?.role !== 'MAKER') {
       throw new HttpException('Access denied', HttpStatus.FORBIDDEN);
     }
 
-    // TODO: Реализовать поиск доступных заказов по навыкам
-    return { success: true,  [] };
+    // Реализовать поиск доступных заказов по навыкам
+    return { success: true, data: [] };
   }
 
   @Post('/:id/accept')
@@ -71,7 +84,7 @@ export class OrderController {
       throw new HttpException(result.error, HttpStatus.BAD_REQUEST);
     }
 
-    return { success: true, data: { status: result.data!.getStatus() } };
+    return { success: true, data: { status: result.data.getStatus() } };
   }
 
   // Endpoint для ручного триггера распределения (для тестов / крона)

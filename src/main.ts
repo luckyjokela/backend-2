@@ -1,9 +1,11 @@
 import 'reflect-metadata';
 import { NestFactory } from '@nestjs/core';
 import { ConfigService } from '@nestjs/config';
+
 import { AppModule } from './interfaces/modules/app.module';
 import { AppPostgreSQLDataSource } from './infrastructure/persistence/typeorm/data-source';
 import cookieParser from 'cookie-parser';
+import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
   try {
@@ -18,6 +20,14 @@ async function bootstrap() {
     });
 
     app.use(cookieParser('secretKeyForCookieParser'));
+
+    app.useGlobalPipes(
+      new ValidationPipe({
+        whitelist: true,
+        forbidNonWhitelisted: true,
+        transform: true,
+      }),
+    );
 
     const port = configService.get<number>('PORT', 3001);
     const nginxIp = configService.get<string>('localIp', '0.0.0.0');

@@ -5,7 +5,7 @@ import { JwtStrategy } from '../strategies/JwtStrategy';
 import { AuthController } from '../../interfaces/controllers/auth.controller';
 import { CreateUserUseCase } from '../../application/useCases/User/CreateUser.usecase';
 import { AuthService } from '../services/auth.service';
-import { RefreshTokenUseCase } from '../../application/useCases/Token/RefreshToken.usecase';
+import { RefreshTokenUseCase } from '../../application/useCases/auth/RefreshToken.usecase';
 import { UserRepository } from '../../infrastructure/persistence/typeorm/repositories/UserRepository';
 import { I_PASSWORD_HASHER_TOKEN } from '../../core/shared/interface/IPasswordHasher.interface';
 import { BcryptPasswordHasher } from '../../infrastructure/services/BcryptPasswordHasher';

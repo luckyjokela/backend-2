@@ -5,8 +5,8 @@ import {
   USER_REPOSITORY_TOKEN,
 } from '../../core/repositories/IUserRepository.interface';
 import { Password } from '../../core/entities/variableObjects/Password';
-import { RefreshTokenUseCase } from '../../application/useCases/Token/RefreshToken.usecase';
-import { ValidateUserDto } from '../../application/dtos/Login.dto';
+import { RefreshTokenUseCase } from '../../application/useCases/auth/RefreshToken.usecase';
+import { ValidateUserDto } from '../../application/dtos/auth/Login.dto';
 import {
   I_PASSWORD_HASHER_TOKEN,
   IPasswordHasher,

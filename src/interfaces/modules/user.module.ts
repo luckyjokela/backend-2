@@ -5,7 +5,7 @@ import { CreateUserUseCase } from '../../application/useCases/User/CreateUser.us
 import { GetUserUseCase } from '../../application/useCases/User/GetUser.usecase';
 import { UpdateUserUseCase } from '../../application/useCases/User/UpdateUser.usecase';
 import { DeleteUserUseCase } from '../../application/useCases/User/DeleteUser.usecase';
-import { ChangeUserPasswordUseCase } from '../../application/useCases/changePassword/ChangePasswordUser.usecase';
+import { ChangeUserPasswordUseCase } from '../../application/useCases/auth/ChangePasswordUser.usecase';
 import { UserRepository } from '../../infrastructure/persistence/typeorm/repositories/UserRepository';
 import { JwtModule } from '@nestjs/jwt';
 @Module({

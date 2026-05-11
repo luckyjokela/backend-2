@@ -1,14 +1,14 @@
 import { Result } from '../../core/shared/types/Result.type';
 import { JwtAuthGuard } from '../../auth/guards/JwtAuthGuard';
 import { IReq } from '../IReq/IRequest';
-import { CreateUserDto } from '../../application/dtos/CreateUser.dto';
-import { UpdateUserDto } from '../../application/dtos/UpdateUser.dto';
-import { ChangePasswordDto } from '../../application/dtos/ChangePassword.dto';
+import { CreateUserDto } from '../../application/dtos/user/CreateUser.dto';
+import { UpdateUserDto } from '../../application/dtos/user/UpdateUser.dto';
+import { ChangePasswordDto } from '../../application/dtos/auth/ChangePassword.dto';
 import { CreateUserUseCase } from '../../application/useCases/User/CreateUser.usecase';
 import { UpdateUserUseCase } from '../../application/useCases/User/UpdateUser.usecase';
 import { GetUserUseCase } from '../../application/useCases/User/GetUser.usecase';
 import { DeleteUserUseCase } from '../../application/useCases/User/DeleteUser.usecase';
-import { ChangeUserPasswordUseCase } from '../../application/useCases/changePassword/ChangePasswordUser.usecase';
+import { ChangeUserPasswordUseCase } from '../../application/useCases/auth/ChangePasswordUser.usecase';
 import {
   Controller,
   Body,

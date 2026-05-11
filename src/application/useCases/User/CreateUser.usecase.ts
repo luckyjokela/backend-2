@@ -16,6 +16,7 @@ import {
   Surname,
   Username,
 } from '../../../core/entities/variableObjects/UserBio';
+import { UserRoles } from '../../../core/entities/variableObjects/Role.enum';
 import { Injectable, Inject } from '@nestjs/common';
 
 @Injectable()
@@ -86,6 +87,12 @@ export class CreateUserUseCase {
         nameVO,
         middleNameVO,
         surnameVO,
+        UserRoles.USER, // ← Добавь (роль по умолчанию)
+        false, // ← Добавь (email не подтверждён)
+        undefined, // ← Добавь (токена нет)
+        undefined, // ← Добавь (refreshToken нет)
+        [], // ← Добавь (навыков нет)
+        true,
       );
 
       await this.userRepository.save(user);

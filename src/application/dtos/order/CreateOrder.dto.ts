@@ -5,7 +5,7 @@ import {
   IsDateString,
   IsOptional,
 } from 'class-validator';
-import { CakeType } from '../../core/entities/variableObjects/CakeType.enum';
+import { CakeType } from '../../../core/entities/variableObjects/CakeType.enum';
 
 export class CreateOrderDto {
   @IsString()

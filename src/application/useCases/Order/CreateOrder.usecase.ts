@@ -14,7 +14,7 @@ export interface CreateOrderCommand {
   layers: string[];
   filling: string;
   requestedDate: Date;
-  description: string;
+  description?: string;
 }
 
 @Injectable()
@@ -32,7 +32,7 @@ export class CreateOrderUseCase {
       cmd.layers,
       cmd.filling,
       cmd.requestedDate,
-      cmd.description,
+      cmd.description!,
     );
 
     // ✅ Проверяем успех
