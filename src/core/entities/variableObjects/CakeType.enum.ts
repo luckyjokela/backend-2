@@ -1,0 +1,8 @@
+export enum CakeType {
+  WEDDING = 'WEDDING',
+  BIRTHDAY = 'BIRTHDAY',
+  CHOCOLATE = 'CHOCOLATE',
+  FRUIT = 'FRUIT',
+  VEGAN = 'VEGAN',
+  CUSTOM = 'CUSTOM',
+}

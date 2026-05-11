@@ -1,7 +1,10 @@
 import { User } from '../../../../core/entities/User';
 import { IUserRepository } from '../../../../core/repositories/IUserRepository.interface';
 import { UserEntity } from '../../typeorm/entities/UserEntity';
+<<<<<<< HEAD
 import { AppPostgreSQLDataSource } from '../data-source';
+=======
+>>>>>>> 33b11ba (update)
 import { Id } from '../../../../core/entities/variableObjects/IdGenerator';
 import { Email } from '../../../../core/entities/variableObjects/Email';
 import { Password } from '../../../../core/entities/variableObjects/Password';
@@ -16,11 +19,23 @@ import {
   Username,
 } from '../../../../core/entities/variableObjects/UserBio';
 import { Injectable } from '@nestjs/common';
+<<<<<<< HEAD
 
 @Injectable()
 export class UserRepository implements IUserRepository {
   private readonly repository =
     AppPostgreSQLDataSource.getRepository(UserEntity);
+=======
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+
+@Injectable()
+export class UserRepository implements IUserRepository {
+  constructor(
+    @InjectRepository(UserEntity)
+    private readonly repository: Repository<UserEntity>,
+  ) {}
+>>>>>>> 33b11ba (update)
   private readonly hasher: IPasswordHasher = new BcryptPasswordHasher();
 
   private entityToUser(entity: UserEntity): User | null {
@@ -29,20 +44,29 @@ export class UserRepository implements IUserRepository {
       console.error('Invalid id in DB:', entity.id);
       return null;
     }
+<<<<<<< HEAD
     const UserId = idOrError.data;
+=======
+    const UserId = idOrError.data!;
+>>>>>>> 33b11ba (update)
 
     const emailOrError = Email.create(entity.email);
     if (!emailOrError.success) {
       console.error('Invalid email in DB:', entity.email);
       return null;
     }
+<<<<<<< HEAD
     const emailVO = emailOrError.data;
+=======
+    const emailVO = emailOrError.data!;
+>>>>>>> 33b11ba (update)
 
     const passwordOrError = Password.fromHash(entity.password);
     if (!passwordOrError.success) {
       console.error('Invalid password hash in DB for user:', entity.id);
       return null;
     }
+<<<<<<< HEAD
     const passwordVO = passwordOrError.data;
 
     const usernameOrError = Username.create(entity.username);
@@ -60,6 +84,25 @@ export class UserRepository implements IUserRepository {
     const middleNameOrError = MiddleName.create(entity.middleName);
     if (!middleNameOrError.success) return null;
     const middleNameVO = middleNameOrError.data;
+=======
+    const passwordVO = passwordOrError.data!;
+
+    const usernameOrError = Username.create(entity.username);
+    if (!usernameOrError.success) return null;
+    const usernameVO = usernameOrError.data!;
+
+    const nameOrError = Name.create(entity.name);
+    if (!nameOrError.success) return null;
+    const nameVO = nameOrError.data!;
+
+    const surnameOrError = Surname.create(entity.surname);
+    if (!surnameOrError.success) return null;
+    const UserSurname = surnameOrError.data!;
+
+    const middleNameOrError = MiddleName.create(entity.middleName);
+    if (!middleNameOrError.success) return null;
+    const middleNameVO = middleNameOrError.data!;
+>>>>>>> 33b11ba (update)
 
     const role = entity.role ?? UserRoles.USER;
 

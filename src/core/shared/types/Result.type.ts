@@ -1,6 +1,10 @@
 type Success<T> = {
   success: true;
+<<<<<<< HEAD
   data: T;
+=======
+  data?: T; // ← Добавь ? (опционально)
+>>>>>>> 33b11ba (update)
 };
 
 type Failure = {
