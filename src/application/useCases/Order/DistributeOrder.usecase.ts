@@ -58,7 +58,6 @@ export class DistributeOrderUseCase {
 
       // 1. Найти всех изготовителей
       const allMakers = await this.userRepo.findAllMakers();
-
       // 2. Фильтр: онлайн + нужный навык + не перегружен (< 3 активных заказов)
       const suitableMakers = allMakers.filter((maker) => {
         const hasSkill = maker.hasSkill(order.getCakeType());
