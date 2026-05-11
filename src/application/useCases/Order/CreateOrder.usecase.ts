@@ -41,7 +41,7 @@ export class CreateOrderUseCase {
     }
 
     // ✅ Берём Order из .data
-    const order = orderResult.data!;
+    const order = orderResult.data;
 
     // ✅ Теперь сохраняем Order (а не Result<Order>)
     await this.orderRepo.save(order);

@@ -1,5 +1,7 @@
 // src/core/repositories/IProductRepository.interface.ts
 import { Product } from '../entities/Product';
+import { User } from '../entities/User';
+import { CakeType } from '../entities/variableObjects/CakeType.enum';
 
 export interface IProductRepository {
   save(product: Product): Promise<void>;
@@ -11,6 +13,10 @@ export interface IProductRepository {
   findByDescription(description: string): Promise<Product[]>;
   findByCategory(category: string): Promise<Product[]>;
   findByImage(imageUrl: string): Promise<Product[]>;
+  findAllMakers(): Promise<User[]>;
+  countActiveOrdersByMaker(makerId: string): Promise<number>;
+  updateOnlineStatus(userId: string, isOnline: boolean): Promise<void>;
+  updateSkills(userId: string, skills: CakeType[]): Promise<void>;
   findAll(): Promise<Product[]>;
   delete(id: string): Promise<void>;
 }

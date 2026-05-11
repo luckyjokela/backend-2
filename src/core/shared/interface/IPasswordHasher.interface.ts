@@ -3,4 +3,4 @@ export interface IPasswordHasher {
   compare(plainText: string, hashed: string): Promise<boolean>;
 }
 
-export const I_PASSWORD_HASHER_TOKEN = Symbol('I_PASSWORD_HASHER_TOKEN');
+export const I_PASSWORD_HASHER_TOKEN = 'I_PASSWORD_HASHER_TOKEN';

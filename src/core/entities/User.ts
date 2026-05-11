@@ -7,6 +7,7 @@ import {
   RefreshToken,
   RefreshTokenWithExpiry,
 } from './variableObjects/RefreshToken';
+import { CakeType } from './variableObjects/CakeType.enum';
 export class User {
   constructor(
     private readonly id: Id,
@@ -20,6 +21,8 @@ export class User {
     private readonly isEmailConfirmed: boolean = false,
     private readonly confirmationToken?: string,
     private readonly refreshToken?: RefreshToken,
+    private readonly skills: CakeType[] = [], // ← Реальные навыки
+    private readonly isOnline: boolean = true, // ← Реальный статус
   ) {}
   getId(): Id {
     return this.id;
@@ -98,6 +101,69 @@ export class User {
       true,
       undefined,
       this.refreshToken,
+    );
+  }
+
+  isMaker(): boolean {
+    return this.role === UserRoles.MAKER;
+  }
+
+  getSkills(): CakeType[] {
+    return this.skills;
+  }
+
+  getIsOnline(): boolean {
+    return this.isOnline;
+  }
+
+  // === РЕАЛЬНАЯ ПРОВЕРКА НАВЫКОВ ===
+  hasSkill(cakeType: CakeType): boolean {
+    // Если навыков нет — считаем что не умеет ничего (или адаптируй под логику)
+    if (this.skills.length === 0) {
+      return false;
+    }
+    return this.skills.includes(cakeType);
+  }
+
+  // === РЕАЛЬНЫЙ СТАТУС ===
+  isOnlineStatus(): boolean {
+    return this.isOnline;
+  }
+
+  // === ДЛЯ ОБНОВЛЕНИЯ ===
+  withSkills(skills: CakeType[]): User {
+    return new User(
+      this.id,
+      this.email,
+      this.password,
+      this.username,
+      this.name,
+      this.middleName,
+      this.surname,
+      this.role,
+      this.isEmailConfirmed,
+      this.confirmationToken,
+      this.refreshToken,
+      skills,
+      this.isOnline,
+    );
+  }
+
+  withOnlineStatus(isOnline: boolean): User {
+    return new User(
+      this.id,
+      this.email,
+      this.password,
+      this.username,
+      this.name,
+      this.middleName,
+      this.surname,
+      this.role,
+      this.isEmailConfirmed,
+      this.confirmationToken,
+      this.refreshToken,
+      this.skills,
+      isOnline,
     );
   }
 }

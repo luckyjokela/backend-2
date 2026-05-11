@@ -49,6 +49,9 @@ export class ChangeUserPasswordUseCase {
       user.getNameObj(),
       user.getMiddleNameObj(),
       user.getSurnameObj(),
+      user.getRole(),
+      user.getIsEmailConfirmed(),
+      user.getConfirmationToken(),
     );
 
     await this.userRepository.save(updatedUser);

@@ -1,3 +1,5 @@
+// src/infrastructure/persistence/typeorm/entities/UserEntity.ts
+import { CakeType } from '../../../../core/entities/variableObjects/CakeType.enum';
 import { UserRoles } from '../../../../core/entities/variableObjects/Role.enum';
 import { Entity, Unique, Column, PrimaryGeneratedColumn } from 'typeorm';
 
@@ -42,4 +44,23 @@ export class UserEntity {
 
   @Column({ nullable: true })
   confirmationToken?: string;
+
+  // === НОВЫЕ ПОЛЯ ДЛЯ MAKER ===
+
+  // Навыки: массив типов тортов
+  @Column({
+    type: 'text',
+    array: true,
+    default: '{}',
+    enum: CakeType,
+  })
+  skills!: CakeType[];
+
+  // Статус онлайн/оффлайн
+  @Column({ default: true })
+  isOnline!: boolean;
+
+  // Последняя активность (для авто-оффлайн)
+  @Column({ type: 'timestamptz', nullable: true })
+  lastActiveAt?: Date;
 }

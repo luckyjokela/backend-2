@@ -1,17 +1,8 @@
-<<<<<<< HEAD
-import { Id } from './variableObjects/IdGenerator';
-
-export class Order {
-  constructor(private readonly id: Id) {}
-  // other code
-=======
-// src/core/entities/Order.ts
 import { OrderStatus } from './variableObjects/OrderStatus.enum';
 import { CakeType } from './variableObjects/CakeType.enum';
 import { Id } from './variableObjects/IdGenerator';
 import { Result } from '../shared/types/Result.type';
 
-// ✅ Интерфейс для данных из БД (TypeORM Entity)
 export interface OrderPersistence {
   id: string;
   customerId: string;
@@ -53,7 +44,7 @@ export class Order {
     if (!newIdResult.success) {
       return { success: false, error: newIdResult.error };
     }
-    const newId = newIdResult.data!;
+    const newId = newIdResult.data;
 
     const customerIdResult = Id.fromString(customerId);
     if (!customerIdResult.success) {
@@ -63,7 +54,7 @@ export class Order {
       };
     }
 
-    const CustomerId = customerIdResult.data!;
+    const CustomerId = customerIdResult.data;
 
     const order = new Order(
       newId,
@@ -79,7 +70,6 @@ export class Order {
     return { success: true, data: order };
   }
 
-  // Геттеры
   getId(): Id {
     return this.id;
   }
@@ -123,7 +113,6 @@ export class Order {
     return this.assignedAt;
   }
 
-  // Бизнес-логика
   isExpired(thresholdHours: number): boolean {
     const now = new Date();
     const diff = now.getTime() - this.createdAt.getTime();
@@ -174,7 +163,6 @@ export class Order {
     return { success: true };
   }
 
-  // Для репозитория
   toPersistence(): OrderPersistence {
     return {
       id: this.id.getValue(),
@@ -206,5 +194,4 @@ export class Order {
       data.createdAt,
     );
   }
->>>>>>> 33b11ba (update)
 }

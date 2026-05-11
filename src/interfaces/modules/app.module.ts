@@ -6,12 +6,14 @@ import { AdminModule } from './admin.module';
 import { AuthModule } from '../../auth/modules/auth.module';
 import { UserModule } from './user.module';
 import { OrderModule } from './order.module';
+import { ScheduleModule } from '@nestjs/schedule';
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
       envFilePath: '.env',
     }),
+    ScheduleModule.forRoot(),
     AdminModule,
     AuthModule,
     UserModule,

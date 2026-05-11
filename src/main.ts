@@ -23,6 +23,11 @@ async function bootstrap() {
     const nginxIp = configService.get<string>('localIp', '0.0.0.0');
 
     await app.listen(port, nginxIp);
+
+    console.log(`🚀 Server running on http://${nginxIp}:${port}`);
+    console.log(
+      '⏰ ExpiredOrdersCronService will check every 6 hours automatically',
+    );
   } catch (error) {
     console.error('🚫 Ошибка при запуске сервера:', error);
     throw error;

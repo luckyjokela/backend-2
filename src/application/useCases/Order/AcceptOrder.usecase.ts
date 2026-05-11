@@ -4,7 +4,6 @@ import {
   ORDER_REPOSITORY_TOKEN,
 } from '../../../core/repositories/IOrderRepository.interface';
 import { Order } from '../../../core/entities/Order';
-import { OrderStatus } from '../../../core/entities/variableObjects/OrderStatus.enum';
 import { Result } from '../../../core/shared/types/Result.type';
 import { Inject } from '@nestjs/common';
 
@@ -25,7 +24,7 @@ export class AcceptOrderUseCase {
       order.assignToMaker(makerId);
       await this.orderRepo.save(order);
 
-      return { success: true, order };
+      return { success: true, data: order };
     } catch (error) {
       return {
         success: false,

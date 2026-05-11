@@ -1,8 +1,8 @@
 export enum OrderStatus {
-  NEW = 'NEW', // Создан, ждёт мастера
-  ASSIGNED = 'ASSIGNED', // Взят в работу
+  NEW = 'NEW',
+  ASSIGNED = 'ASSIGNED',
   IN_PROGRESS = 'IN_PROGRESS',
-  READY = 'READY', // Готов к выдаче
+  READY = 'READY',
   COMPLETED = 'COMPLETED',
   CANCELLED = 'CANCELLED',
 }

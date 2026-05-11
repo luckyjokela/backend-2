@@ -23,8 +23,4 @@ export interface IUserRepository {
   updateEmailConfirmation(userId: string, token: string): Promise<void>;
 }
 
-<<<<<<< HEAD
-export const USER_REPOSITORY_TOKEN = Symbol('I_USER_REPOSITORY');
-=======
 export const USER_REPOSITORY_TOKEN = 'USER_REPOSITORY_TOKEN';
->>>>>>> 33b11ba (update)

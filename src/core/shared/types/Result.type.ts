@@ -1,10 +1,13 @@
+// src/core/shared/types/Result.type.ts
+
 type Success<T> = {
   success: true;
-<<<<<<< HEAD
   data: T;
-=======
-  data?: T; // ← Добавь ? (опционально)
->>>>>>> 33b11ba (update)
+};
+
+type SuccessVoid = {
+  success: true;
+  data?: undefined;
 };
 
 type Failure = {
@@ -12,5 +15,6 @@ type Failure = {
   error: string;
   code?: number;
 };
-
-export type Result<T> = Success<T> | Failure;
+export type Result<T> = T extends void
+  ? SuccessVoid | Failure
+  : Success<T> | Failure;
