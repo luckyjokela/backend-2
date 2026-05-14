@@ -62,7 +62,7 @@ export class UserController {
     };
   }
 
-  @Get('me')
+  @Get('profile')
   @UseGuards(JwtAuthGuard)
   async getMe(@Request() req: IReq) {
     const result = await this.GetUserUseCase.execute(req.user.userId);

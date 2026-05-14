@@ -3,14 +3,14 @@ import { NestFactory } from '@nestjs/core';
 import { ConfigService } from '@nestjs/config';
 
 import { AppModule } from './interfaces/modules/app.module';
-import { AppPostgreSQLDataSource } from './infrastructure/persistence/typeorm/data-source';
+// import { AppPostgreSQLDataSource } from './infrastructure/persistence/typeorm/data-source';
 import cookieParser from 'cookie-parser';
 import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
   try {
     const app = await NestFactory.create(AppModule);
-    await AppPostgreSQLDataSource.initialize();
+    // await AppPostgreSQLDataSource.initialize();
 
     const configService = app.get(ConfigService);
     const siteOrigin = configService.get<string>('myOrigin');

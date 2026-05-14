@@ -25,6 +25,20 @@
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
+## Install:
+
+Recommended - pnpm!
+
+```bash
+npm i
+# or
+yarn i
+# or
+pnpm i
+# or
+bun i
+```
+
 ## Project setup
 
 ```bash

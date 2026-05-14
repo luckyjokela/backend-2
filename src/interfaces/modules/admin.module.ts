@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common';
 import { GetAllUserUseCase } from '../../application/useCases/User/GetAllUser.usecase';
-import { USER_REPOSITORY_TOKEN } from '../../core/repositories/IUserRepository.interface';
-import { UserRepository } from '../../infrastructure/persistence/typeorm/repositories/UserRepository';
+import { DeleteUserUseCase } from '../../application/useCases/User/DeleteUser.usecase';
 import { AdminController } from '../controllers/admin.controller';
 import { JwtModule } from '@nestjs/jwt';
 @Module({
@@ -12,12 +11,6 @@ import { JwtModule } from '@nestjs/jwt';
     }),
   ],
   controllers: [AdminController],
-  providers: [
-    GetAllUserUseCase,
-    {
-      provide: USER_REPOSITORY_TOKEN,
-      useClass: UserRepository,
-    },
-  ],
+  providers: [GetAllUserUseCase, DeleteUserUseCase],
 })
 export class AdminModule {}

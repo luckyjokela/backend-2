@@ -1,5 +1,8 @@
+// server/src/infrastructure/persistence/typeorm/data-source.ts
 import { DataSource } from 'typeorm';
 import { UserEntity } from './entities/UserEntity';
+import { OrderEntity } from './entities/OrderEntity';
+import { NotificationEntity } from './entities/NotificationEntity';
 
 const getDataSourceOptions = () => {
   const mode = process.env.DB_MODE || 'local';
@@ -32,7 +35,8 @@ export const AppPostgreSQLDataSource = new DataSource({
   ...getDataSourceOptions(),
   synchronize: process.env.DB_MODE === 'local',
   logging: false,
-  entities: [UserEntity],
+  // ✅ ДОБАВЬ ВСЕ ENTITY:
+  entities: [UserEntity, OrderEntity, NotificationEntity],
   subscribers: [],
   migrations: [],
 });
@@ -41,7 +45,8 @@ export const AppMySQLDataSource = new DataSource({
   ...getDataSourceOptions(),
   synchronize: process.env.DB_MODE === 'local',
   logging: false,
-  entities: [UserEntity],
+  // ✅ ДОБАВЬ ВСЕ ENTITY:
+  entities: [UserEntity, OrderEntity, NotificationEntity],
   subscribers: [],
   migrations: [],
 });
