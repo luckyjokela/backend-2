@@ -1,12 +1,12 @@
 import { USER_REPOSITORY_TOKEN } from '../src/core/repositories/IUserRepository.interface';
 import { AuthController } from '../src/interfaces/controllers/auth.controller';
 import { AuthModule } from '../src/auth/modules/auth.module';
-import { RefreshTokenUseCase } from '../src/application/useCases/refreshToken/RefreshToken.usecase';
+import { RefreshTokenUseCase } from '../src/application/useCases/auth/RefreshToken.usecase';
 import { AuthService } from '../src/auth/services/auth.service';
 import { JwtAuthGuard } from '../src/auth/guards/JwtAuthGuard';
 import { JwtStrategy } from '../src/auth/strategies/JwtStrategy';
 import { I_PASSWORD_HASHER_TOKEN } from '../src/core/shared/interface/IPasswordHasher.interface';
-import { CreateUserUseCase } from '../src/application/useCases/createUser/CreateUser.usecase';
+import { CreateUserUseCase } from '../src/application/useCases/User/CreateUser.usecase';
 import { JwtModule } from '@nestjs/jwt';
 import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';

@@ -6,11 +6,11 @@ import { JwtStrategy } from '../src/auth/strategies/JwtStrategy';
 import { JwtAuthGuard } from '../src/auth/guards/JwtAuthGuard';
 import { UserController } from '../src/interfaces/controllers/user.controller';
 import { UserModule } from '../src/interfaces/modules/user.module';
-import { CreateUserUseCase } from '../src/application/useCases/createUser/CreateUser.usecase';
-import { GetUserUseCase } from '../src/application/useCases/getUser/GetUser.usecase';
-import { UpdateUserUseCase } from '../src/application/useCases/updateUser/UpdateUser.usecase';
-import { DeleteUserUseCase } from '../src/application/useCases/deleteUser/DeleteUser.usecase';
-import { ChangeUserPasswordUseCase } from '../src/application/useCases/changePassword/ChangePasswordUser.usecase';
+import { CreateUserUseCase } from '../src/application/useCases/User/CreateUser.usecase';
+import { GetUserUseCase } from '../src/application/useCases/User/GetUser.usecase';
+import { UpdateUserUseCase } from '../src/application/useCases/User/UpdateUser.usecase';
+import { DeleteUserUseCase } from '../src/application/useCases/User/DeleteUser.usecase';
+import { ChangeUserPasswordUseCase } from '../src/application/useCases/auth/ChangePasswordUser.usecase';
 import { UserRepository } from '../src/infrastructure/persistence/typeorm/repositories/UserRepository';
 
 describe('User (e2e) USER', () => {
@@ -159,7 +159,7 @@ describe('User (e2e) USER', () => {
     });
   });
 
-  describe('Get /user/me', () => {
+  describe('Get /user/profile', () => {
     it("should show a user info in user's panel", async () => {
       const token = app
         .get(JwtService)
