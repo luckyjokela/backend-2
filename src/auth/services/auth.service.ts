@@ -25,12 +25,12 @@ export class AuthService {
   ) {}
 
   async login(
-    user: { userId: string; email: string; username: string; role: string },
+    user: { id: string; email: string; username: string; role: string },
     ip: string,
     userAgent: string,
   ): Promise<{ access_token: string; refresh_token: string }> {
     const payload = {
-      sub: user.userId,
+      sub: user.id,
       email: user.email,
       username: user.username,
       role: user.role,
@@ -40,7 +40,7 @@ export class AuthService {
 
     const hashedToken = this.refreshTokenService.hashToken(refreshToken);
     await this.userRepository.addRefreshToken(
-      user.userId,
+      user.id,
       hashedToken,
       ip,
       userAgent,
@@ -100,7 +100,7 @@ export class AuthService {
 
       if (await this.hasher.compare(password, user.getPasswordValue())) {
         return {
-          userId: user.getIdValue(),
+          id: user.getIdValue(),
           email: user.getEmail(),
           username: user.getUsername(),
           role: user.getRole(),

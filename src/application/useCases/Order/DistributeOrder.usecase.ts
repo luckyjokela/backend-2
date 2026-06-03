@@ -32,13 +32,11 @@ export class DistributeOrderUseCase {
         return { success: false, error: 'Order not found or already assigned' };
       }
 
-      // 1. Получаем всех makers
       const allUsers = await this.userRepo.findAll();
       const allMakers = allUsers.filter((user) => user.isMaker());
 
       this.logger.log(`📊 Found ${allMakers.length} makers total`);
 
-      // 2. Фильтруем по реальным критериям
       const suitableMakers = allMakers.filter((maker) => {
         const hasSkill = maker.hasSkill(order.getCakeType());
         const isOnline = maker.isOnlineStatus();
@@ -56,8 +54,6 @@ export class DistributeOrderUseCase {
       });
 
       this.logger.log(`✅ Found ${suitableMakers.length} suitable makers`);
-
-      // 3. Отправляем РЕАЛЬНЫЕ уведомления
       for (const maker of suitableMakers) {
         await this.notificationService.sendToMaker(maker.getIdValue(), {
           message: `🎂 Новый заказ: ${order.getCakeType()} на ${order.getRequestedDate().toLocaleDateString()}`,

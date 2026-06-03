@@ -96,6 +96,8 @@ With Mau, you can deploy your application in just a few clicks, allowing you to 
 3 simple commands for build containers with docker
 
 ```bash 
+docker-compose down -v
+docker-compose up -d --build
 docker-compose down
 docker-compose build --no-cache
 docker-compose up -d

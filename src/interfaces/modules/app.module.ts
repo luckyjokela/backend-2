@@ -10,7 +10,6 @@ import { OrderModule } from './order.module';
 import { ScheduleModule } from '@nestjs/schedule';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppPostgreSQLDataSource } from '../../infrastructure/persistence/typeorm/data-source';
-import { DatabaseModule } from './database.module';
 import { RepositoriesModule } from './repositories.module'; // ← Убедись, что импортирован
 
 @Module({
@@ -20,17 +19,17 @@ import { RepositoriesModule } from './repositories.module'; // ← Убедис�
     TypeOrmModule.forRoot({
       ...AppPostgreSQLDataSource.options,
       autoLoadEntities: true,
+      synchronize: true,
     }),
-
-    ScheduleModule.forRoot(),
-
-    DatabaseModule, // ✅ Глобальный: Entity
-    RepositoriesModule, // ✅ Глобальный: репозитории
-
-    AdminModule,
     AuthModule,
     UserModule,
     OrderModule,
+
+    ScheduleModule.forRoot(),
+
+    RepositoriesModule, // ✅ Глобальный: репозитории
+
+    AdminModule,
   ],
   controllers: [AppController],
   providers: [AppService],

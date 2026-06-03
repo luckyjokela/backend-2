@@ -1,4 +1,5 @@
 // password.spec.ts
+import { describe } from 'node:test';
 import { Password } from './Password';
 import * as bcrypt from 'bcrypt';
 

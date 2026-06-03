@@ -41,15 +41,23 @@ export class Name extends ValueObject<NameType> {
 
 export class MiddleName extends ValueObject<NameType> {
   static create(value: NameType): Result<MiddleName> {
-    if (!value || value.trim().length < 2 || value.length > 50) {
+    // ✅ РАЗРЕШАЕМ ПУСТОЕ ОЧЕСТВО
+    if (!value || value.trim() === '') {
+      return { success: true, data: new MiddleName('') };
+    }
+
+    // ✅ ВАЛИДАЦИЯ ТОЛЬКО ЕСЛИ ЗАПОЛНЕНО
+    if (value.trim().length < 2 || value.length > 50) {
       return {
         success: false,
         error: 'MiddleName must be 2-50 characters long',
       };
     }
+
     if (filterXSS(value) !== value) {
       return { success: false, error: 'MiddleName contains unsafe characters' };
     }
+
     return { success: true, data: new MiddleName(value) };
   }
 }

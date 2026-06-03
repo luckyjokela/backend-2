@@ -25,19 +25,26 @@ const cookieExtractor = (request: Request): string | null => {
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor() {
+    // Получаем секрет и проверяем что он есть
+    const jwtSecret = process.env.JWT_SECRET;
+
+    if (!jwtSecret) {
+      throw new Error('JWT_SECRET environment variable is required!');
+    }
+
     super({
       jwtFromRequest: ExtractJwt.fromExtractors([
         cookieExtractor,
         ExtractJwt.fromAuthHeaderAsBearerToken(),
       ]),
       ignoreExpiration: false,
-      secretOrKey: process.env.JWT_SECRET || 'secret_key',
+      secretOrKey: jwtSecret, // ← Теперь точно string, не undefined!
     });
   }
 
   validate(payload: JwtPayload) {
     return {
-      userId: payload.sub,
+      id: payload.sub,
       email: payload.email,
       role: payload.role || 'user',
     };

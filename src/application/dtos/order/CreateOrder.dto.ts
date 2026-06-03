@@ -4,11 +4,12 @@ import {
   IsArray,
   IsDateString,
   IsOptional,
+  IsUUID,
 } from 'class-validator';
 import { CakeType } from '../../../core/entities/variableObjects/CakeType.enum';
 
 export class CreateOrderDto {
-  @IsString()
+  @IsUUID()
   customerId!: string;
 
   @IsEnum(CakeType)

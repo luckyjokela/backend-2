@@ -13,18 +13,20 @@ async function bootstrap() {
     // await AppPostgreSQLDataSource.initialize();
 
     const configService = app.get(ConfigService);
-    const siteOrigin = configService.get<string>('myOrigin');
+    // const siteOrigin = configService.get<string>('myOrigin');
     app.enableCors({
-      origin: siteOrigin,
+      origin: ['http://localhost:3000', 'http://localhost:3001'],
       credentials: true,
     });
 
+    app.setGlobalPrefix('api');
     app.use(cookieParser('secretKeyForCookieParser'));
+
 
     app.useGlobalPipes(
       new ValidationPipe({
         whitelist: true,
-        forbidNonWhitelisted: true,
+        forbidNonWhitelisted: true, // ! Этот сраный параметр заставляет выбрасывать ошибку, если в запросе есть поля не строгие в DTO. Пример как нужно их типизировать в Register.dto.ts.
         transform: true,
       }),
     );

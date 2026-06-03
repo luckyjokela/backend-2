@@ -13,40 +13,40 @@ export class PasswordValidator {
       };
     }
 
-    if (trimmed.length < 8) {
+    if (trimmed.length < 6) {
       return {
         success: false,
-        error: 'Password must be at least 8 characters long',
+        error: 'Password must be at least 6 characters long',
       };
     }
 
-    const hasLower = /[a-z]/.test(trimmed);
-    const hasUpper = /[A-Z]/.test(trimmed);
-    const hasNumber = /\d/.test(trimmed);
+    // const hasLower = /[a-z]/.test(trimmed);
+    // const hasUpper = /[A-Z]/.test(trimmed);
+    // const hasNumber = /\d/.test(trimmed);
 
-    if (!hasLower) {
-      return {
-        success: false,
-        error: 'Password must contain a lowercase letter',
-      };
-    }
-    if (!hasUpper) {
-      return {
-        success: false,
-        error: 'Password must contain an uppercase letter',
-      };
-    }
-    if (!hasNumber) {
-      return { success: false, error: 'Password must contain a number' };
-    }
+    // if (!hasLower) {
+    //   return {
+    //     success: false,
+    //     error: 'Password must contain a lowercase letter',
+    //   };
+    // }
+    // if (!hasUpper) {
+    //   return {
+    //     success: false,
+    //     error: 'Password must contain an uppercase letter',
+    //   };
+    // }
+    // if (!hasNumber) {
+    //   return { success: false, error: 'Password must contain a number' };
+    // }
 
-    const isTooCommon = ['password', '12345678', 'qwerty123', 'admin123'].some(
-      (word) => trimmed.toLowerCase().includes(word),
-    );
+    // const isTooCommon = ['password', '12345678', 'qwerty123', 'admin123'].some(
+    //   (word) => trimmed.toLowerCase().includes(word),
+    // );
 
-    if (isTooCommon) {
-      return { success: false, error: 'Password is too common or predictable' };
-    }
+    // if (isTooCommon) {
+    //   return { success: false, error: 'Password is too common or predictable' };
+    // }
 
     return { success: true };
   }

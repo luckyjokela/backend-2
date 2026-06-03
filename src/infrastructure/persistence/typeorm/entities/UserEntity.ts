@@ -3,7 +3,7 @@ import { CakeType } from '../../../../core/entities/variableObjects/CakeType.enu
 import { UserRoles } from '../../../../core/entities/variableObjects/Role.enum';
 import { Entity, Unique, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity()
+@Entity('users')
 @Unique(['email', 'username'])
 export class UserEntity {
   @PrimaryGeneratedColumn('uuid')
@@ -30,7 +30,7 @@ export class UserEntity {
   @Column()
   name!: string;
 
-  @Column()
+  @Column({ nullable: true })
   middleName!: string;
 
   @Column()
@@ -45,9 +45,6 @@ export class UserEntity {
   @Column({ nullable: true })
   confirmationToken?: string;
 
-  // === НОВЫЕ ПОЛЯ ДЛЯ MAKER ===
-
-  // Навыки: массив типов тортов
   @Column({
     type: 'text',
     array: true,
@@ -56,11 +53,9 @@ export class UserEntity {
   })
   skills!: CakeType[];
 
-  // Статус онлайн/оффлайн
   @Column({ default: true })
   isOnline!: boolean;
 
-  // Последняя активность (для авто-оффлайн)
   @Column({ type: 'timestamptz', nullable: true })
   lastActiveAt?: Date;
 }

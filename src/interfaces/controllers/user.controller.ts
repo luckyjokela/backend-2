@@ -39,13 +39,13 @@ export class UserController {
     @Body() dto: CreateUserDto,
   ): Promise<Result<{ id: string; email: string; username: string }>> {
     const result = await this.CreateUseCase.execute(
-      dto.id,
+      '',
       dto.email,
       dto.password,
       dto.username,
       dto.name,
       dto.surname,
-      dto.middleName,
+      dto.middleName || '',
     );
 
     if (!result.success) {
@@ -95,12 +95,12 @@ export class UserController {
     }>
   > {
     const result = await this.UpdateUseCase.execute(
-      dto.id,
+      '',
       dto.email,
       dto.username,
       dto.name,
       dto.surname,
-      dto.middleName,
+      dto.middleName || '',
     );
 
     if (!result.success) {

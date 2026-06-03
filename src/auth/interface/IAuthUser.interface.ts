@@ -1,5 +1,5 @@
 export interface IAuthUser {
-  userId: string;
+  id: string;
   email: string;
   role: 'user' | 'admin' | 'owner' | 'moderator';
 }
