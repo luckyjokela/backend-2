@@ -9,6 +9,7 @@ import { UpdateUserUseCase } from '../../application/useCases/User/UpdateUser.us
 import { GetUserUseCase } from '../../application/useCases/User/GetUser.usecase';
 import { DeleteUserUseCase } from '../../application/useCases/User/DeleteUser.usecase';
 import { ChangeUserPasswordUseCase } from '../../application/useCases/auth/ChangePasswordUser.usecase';
+import { MakeUserMakerUseCase } from '../../application/useCases/User/MakeUserMaker.usecase'; // ← ДОБАВИТЬ!
 import {
   Controller,
   Body,
@@ -32,6 +33,7 @@ export class UserController {
     private readonly UpdateUseCase: UpdateUserUseCase,
     private readonly DeleteUserUseCase: DeleteUserUseCase,
     private readonly changeUserPasswordUseCase: ChangeUserPasswordUseCase,
+    private readonly makeUserMakerUseCase: MakeUserMakerUseCase, // ← ДОБАВИТЬ!
   ) {}
 
   @Post()
@@ -153,5 +155,13 @@ export class UserController {
     }
 
     return { success: true, data: undefined };
+  }
+
+  @Patch('become-maker')
+  @UseGuards(JwtAuthGuard)
+  async becomeMaker(@Request() req: IReq) {
+    const userId = req.user.userId; // ← ИСПРАВИТЬ (userId, не id)
+    await this.makeUserMakerUseCase.execute(userId); // ← ИСПРАВИТЬ (использовать makeUserMakerUseCase)
+    return { success: true, message: 'Теперь вы кондитер' };
   }
 }

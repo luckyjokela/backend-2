@@ -7,6 +7,7 @@ import { UpdateUserUseCase } from '../../application/useCases/User/UpdateUser.us
 import { DeleteUserUseCase } from '../../application/useCases/User/DeleteUser.usecase';
 import { ChangeUserPasswordUseCase } from '../../application/useCases/auth/ChangePasswordUser.usecase';
 import { JwtModule } from '@nestjs/jwt';
+import { MakeUserMakerUseCase } from '../../application/useCases/User/MakeUserMaker.usecase';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { JwtModule } from '@nestjs/jwt';
     GetUserUseCase,
     DeleteUserUseCase,
     ChangeUserPasswordUseCase,
+    MakeUserMakerUseCase,
     // ❌ УБЕРИ ЭТОТ БЛОК:
     // {
     //   provide: USER_REPOSITORY_TOKEN,
@@ -30,6 +32,11 @@ import { JwtModule } from '@nestjs/jwt';
     // },
   ],
   // ✅ Экспортируй useCase если нужны другим модулям
-  exports: [CreateUserUseCase, GetUserUseCase, UpdateUserUseCase],
+  exports: [
+    CreateUserUseCase,
+    GetUserUseCase,
+    UpdateUserUseCase,
+    MakeUserMakerUseCase,
+  ],
 })
 export class UserModule {}
